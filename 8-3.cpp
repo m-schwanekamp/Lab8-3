@@ -6,21 +6,30 @@
 using namespace std;
 int countWords(string str);
 
-int main () {
-    string sentence;
+int main() {
+    string input;
+    string str;
     int words = 0;
-    int lenOfSentence = sentence.size();
     
-    cout << "Enter a string or Q to quit: ";
-    if (cin >> sentence) {
-        for (int i = 0; i < lenOfSentence; i++) {
-            if (sentence[i] == ' ') {
-                words++;
-            }
-        }
-    
-        words = words + 1;
+    while (true) {
+        cout << "Enter a string or Q to quit: ";
+        getline(cin, input);
+        if (input == "Q") break;
+        words = countWords(input);
         cout << "Word count: " << words << endl;
     }
-    else return 0;
+    return 0;
+}
+
+int countWords(string str) {
+    int words = 0;
+    int sentence_length = str.length();
+    for (int i = 0; i < sentence_length; i++) {
+        if (str[i] == ' ' && str[i + 1] != ' ') {
+            words++;
+        }
+    }
+    words += 1;
+    return words;
+
 }
